@@ -1,0 +1,17 @@
+/etc/udev/rules.d/70-persistent-usb.rules
+
+
+SUBSYSTEM !="usb_device", ACTION !="add", GOTO="device_rules_end"
+SYSFS{idVendor} =="2341", SYSFS{idProduct} =="8036", SYMLINK+="mydevice"
+MODE="0666", OWNER="will", GROUP="root"
+LABEL="device_rules_end"
+
+
+maybe 
+
+SUBSYSTEM !="usb_device", ACTION !="add", GOTO="device_rules_end"
+SYSFS{idVendor} =="2341", SYSFS{idProduct} =="8036", SYMLINK+="mydevice"
+MODE="0666", OWNER="root", GROUP="usbusers"
+LABEL="device_rules_end"
+
+then usermod -a -G groupName userName
